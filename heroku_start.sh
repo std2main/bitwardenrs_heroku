@@ -10,6 +10,12 @@ export DISABLE_ICON_DOWNLOAD=true
 export ICON_CACHE_TTL=0
 export ICON_CACHE_NEGTTL=0
 
+if [ "${ENABLE_ADMIN}" == "true" ]; then
+  export ADMIN_TOKEN="${GEN_ADMIN_TOKEN}"
+else
+  unset ADMIN_TOKEN
+fi
+
 # TODO: Warning or refuse to start when DATABASE_URL is not set
 
 /bin/sh /start.sh
