@@ -4,5 +4,22 @@
   "repository": "https://github.com/std2main/bitwardenrs_heroku",
   "website": "https://github.com/std2main/bitwardenrs_heroku",
   "keywords": ["bitwarden", "postgresql", "password", "otp", "rclone"],
+	"env": {
+	  "DOMAIN": {
+			"description": "Domain of this site, like https://bw.example.com",
+			"value": "revert"
+		},
+		"SINGUP_ALLOWED": {
+			"description": "Allow singup? true or false, default:false",
+			"value": "false"
+		},
+		"ADMIN_TOKEN": {
+			"description": "Token to access /admin , plase use 'openssl rand -base64 48', will be rejected if shorter than 48",
+			"value": "revert"
+		}
+	},
+  "addons": [
+     "heroku-postgresql:hobby-dev"
+   ],
   "stack": "container"
 }
