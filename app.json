@@ -7,15 +7,16 @@
 	"env": {
 	  "DOMAIN": {
 			"description": "Domain of this site, like https://bw.example.com",
-			"value": "revert"
+			"value": "https://bw.example.com"
 		},
 		"SINGUP_ALLOWED": {
-			"description": "Allow singup? true or false, default:false",
+			"description": "Allow singup? true or false",
 			"value": "false"
 		},
 		"ADMIN_TOKEN": {
 			"description": "Token to access /admin , plase use 'openssl rand -base64 48', will be rejected if shorter than 48",
-			"value": "revert"
+      "generator": "secret",
+      "required": "false"
 		}
 	},
   "addons": [
