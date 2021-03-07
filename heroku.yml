@@ -1,0 +1,9 @@
+setup:
+  addons:
+    - plan: heroku-postgresql:hobby-dev
+      as: DATABASE
+build:
+  docker:
+    web: 
+      dockerfile: Dockerfile
+
