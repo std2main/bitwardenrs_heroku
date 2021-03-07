@@ -8,7 +8,7 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
 
 ## Dependency
 * Heroku-Postgresql
-  * Free tier provides 10000 rows that is enough for 10 peoples.
+  * Free tier provides 10000 rows that is enough for 10 people.
   * My 5 year old vault contains 800 passwords and consumed 1000 rows in pgsql.
 
 ## Limitation
