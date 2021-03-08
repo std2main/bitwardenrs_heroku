@@ -3,8 +3,12 @@ Run [bitwarden_rs](https://github.com/dani-garcia/bitwarden_rs) on heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-## Introduction
 Based on official bitwarden_rs docker image, added customized scripts to setup in heroku enviroment.
+
+## Features
+* Using Postgresql Database for persistent storage.
+* Persistent rsa keys.
+* Set bitwarden env in heroku env and take effect immediately.
 
 ## Addons
 * Heroku-Postgresql
@@ -27,3 +31,5 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
   * Use **GEN_ADMIN_TOKEN** as ADMIN_TOKEN. This is auto generated secret when app initialized.
 * Configuration
   * All enviroment of heroku will be treated as enviroment of bitwarden_rs.
+* Forcely loggout after a while
+  * Run heroku_set_rsa.sh to enable persistent rsa key.

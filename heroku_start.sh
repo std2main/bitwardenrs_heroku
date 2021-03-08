@@ -19,7 +19,7 @@ else
 fi
 
 if [ -z "${RSA_CONTENT}" ]; then
-  echo "RSA KEY will be generated"
+  echo "RSA CONTENT not set"
 else
   echo "Restore rsa content"
   echo "${RSA_CONTENT}" | base64 -d | tar zxf -
