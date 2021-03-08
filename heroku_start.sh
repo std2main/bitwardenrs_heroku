@@ -11,9 +11,19 @@ export ICON_CACHE_TTL=0
 export ICON_CACHE_NEGTTL=0
 
 if [ "${ENABLE_ADMIN}" == "true" ]; then
+  echo "ENABLE ADMIN"
   export ADMIN_TOKEN="${GEN_ADMIN_TOKEN}"
 else
+  echo "DISABLE ADMIN"
   unset ADMIN_TOKEN
+fi
+
+if [ -z "${RSA_CONTENT}" ]; then
+  echo "RSA KEY will be generated"
+else
+  echo "Restore rsa content"
+  echo "${RSA_CONTENT}" | base64 -d | tar zxf -
+  export RSA_KEY_FILENAME=${PWD}/rsa_key
 fi
 
 # TODO: Warning or refuse to start when DATABASE_URL is not set
