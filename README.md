@@ -1,7 +1,7 @@
 # bitwardenrs_heroku
 Run [bitwarden_rs](https://github.com/dani-garcia/bitwarden_rs) on heroku
 
-一键部署在Heroku上：[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Introduction
 Based on official bitwarden_rs docker image, added customized scripts to setup in heroku enviroment.
