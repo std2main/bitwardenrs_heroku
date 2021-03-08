@@ -7,6 +7,7 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
 
 ## Features
 * Using Postgresql Database for persistent storage.
+* Daily backup and monthly longterm backup.
 * Persistent rsa keys.
 * Set bitwarden env in heroku env and take effect immediately.
 
