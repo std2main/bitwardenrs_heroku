@@ -17,7 +17,7 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
   * My 5 year old vault contains 800 passwords and consumed 1000 rows in pgsql.
 * Autobus
   * Daily backups of postgresql.
-  * Keep monthly backup for 1 year for free.
+  * Keep monthly backup for 1 year for free. [see more](https://devcenter.heroku.com/articles/autobus#backups-retention-limits)
   * **Important**, add 'heroku@autobus.io' as collabrator in https://dashboard.heroku.com/apps/YOUR_APP/access after creation.
 
 ## Limitation
