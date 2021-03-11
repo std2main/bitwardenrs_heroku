@@ -26,6 +26,10 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
 * No Icons.
   * [Official icon server](https://icons.bitwarden.net/) can be used if need icons, [see more](https://bitwarden.com/help/article/website-icons/). 
 
+## TODO
+* Auto Update
+  * Github Action + Heroku, create a branch 'auto-update' to be used by heroku, this branch will periodically commit then triggers app rebuid in heroku to catch any updates of bitwarden_rs
+
 ## FAQ
 * Admin panel
   * Set **ENABLE_ADMIN**=**true** in heroku enviroment.
