@@ -16,8 +16,8 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
     4. Icons.
 
 ## Why Heroku
-* Bitwarden_rs is a lightweight service that able to run on heroku.
-* Free quota (550 dynos) lasts for one month when blocks notification requests.
+* Bitwarden_rs is a lightweight service that able to run on heroku's free dyno ( < 512MB ram).
+* Free quota (average 18 horus/day) lasts for one month when blocks notification requests.
 
 ## Features
 * Using Postgresql Database for persistent storage.
