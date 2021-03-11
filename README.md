@@ -5,6 +5,20 @@ Run [bitwarden_rs](https://github.com/dani-garcia/bitwarden_rs) on heroku
 
 Based on official bitwarden_rs docker image, added customized scripts to setup in heroku enviroment.
 
+## Goal
+* Deploy a reliable bitwarden for free as easy as possible.
+  * Deploying: Almost no command line.
+  * Maintainance: Almost zero. 
+  * As more functions as budget support
+    1. Essentials and backups.
+    2. Realttime syncing cross multiple devices.
+    3. Attachments.
+    4. Icons.
+
+## Why Heroku
+* Bitwarden_rs is a lightweight service that able to run on heroku.
+* Free quota (550 dynos) lasts for one month when blocks notification requests.
+
 ## Features
 * Using Postgresql Database for persistent storage.
 * Daily backup and monthly longterm backup.
@@ -29,6 +43,9 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
 ## TODO
 * Auto Update
   * Github Action + Heroku, create a branch 'auto-update' to be used by heroku, this branch will periodically commit then triggers app rebuid in heroku to catch any updates of bitwarden_rs
+* Unverified heroku user solution
+  * Self owned DATABASE.
+  * Persistent local storage tricks.
 
 ## FAQ
 * Admin panel
@@ -38,3 +55,8 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
   * All enviroment of heroku will be treated as enviroment of bitwarden_rs.
 * Forcely loggout after a while
   * Run heroku_set_rsa.sh to enable persistent rsa key.
+* App costs 24 dynos/day, aka it didn't sleep when idle.
+  * Mostly caused by requests of '/notifications' and '/icons', [see more](https://github.com/dani-garcia/bitwarden_rs/issues/126)
+  * Notifications are triggered every 4 minutes by chrome extension or desktop app.
+  * Icons are triggered if icon server url is not set to others.
+  * My method is to block them by Cloudflare firewall. 
