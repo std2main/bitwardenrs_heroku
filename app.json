@@ -18,7 +18,7 @@
       "value": "false"
 		},
 		"RSA_CONTENT": {
-			"description": "Content of rsa keys, see more at https://github.com/std2main/bitwardenrs_heroku/blob/main/set_heroku_rsa.sh",
+			"description": "Content of rsa keys, see more at https://github.com/std2main/bitwardenrs_heroku/blob/main/tools/set_heroku_rsa.sh",
       "value": "",
       "required": false
 		},
