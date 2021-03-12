@@ -11,13 +11,14 @@ Based on official bitwarden_rs docker image, added customized scripts to setup i
   * Maintainance: Almost zero. 
   * As more functions as budget support
     1. Essentials and backups.
-    2. Realttime syncing cross multiple devices.
-    3. Attachments.
-    4. Icons.
+    2. TODO: Realtime syncing cross multiple devices.
+    3. TODO: Attachments.
+    4. TODO: Icons.
 
 ## Why Heroku
 * Bitwarden_rs is a lightweight service that able to run on heroku's free dyno ( < 512MB ram).
 * Free quota (average 18 horus/day) lasts for one month when notification requests are blocked.
+* Verified user have extensible free addons to make life easy, including database, logging, backup, etc.
 
 ## Features
 * Using Postgresql Database for persistent storage.
