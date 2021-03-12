@@ -32,7 +32,7 @@ restore_sqlite3() {
 }
 
 init() {
-  mkdir "$HOME/.ssh"
+  mkdir -p "$HOME/.ssh"
   echo "$BACKUP_GIT_SSH_KEY_B64" | base64 -d > "$HOME/.ssh/id_rsa"
   chmod 400 "$HOME/.ssh/id_rsa"
   chmod 700 "$HOME/.ssh"

@@ -26,6 +26,7 @@ export RSA_KEY_FILENAME="${BACKUP_DB_REPO}/rsa_key"
 export DATA_FOLDER="${BACKUP_DB_REPO}/data"
 /git_backup.sh restore_db || (echo "Failed to restore database"; exit 2)
 echo "Restore DB OK"
+mkdir -p "${DATA_FOLDER}"
 
 # Store files and icons in FILE_REPO
 export ATTACHMENTS_FOLDER="${BACKUP_FILE_REPO}/attachments/"
