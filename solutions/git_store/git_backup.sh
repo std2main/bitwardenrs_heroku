@@ -16,7 +16,7 @@ commit_repo() {
   local CURRENT_TIME
   CURRENT_TIME="$(date +"%Y/%m/%d::%H:%M")"
   if [ -n "$(git status --porcelain)" ]; then
-    if git commit --amend -m "Auto backup: ${BACKUP_SESSION} - ${CURRENT_TIME}"
+    if git commit --amend -m "Auto: ${BACKUP_SESSION} - ${CURRENT_TIME}"
     then
       git push -f
     fi
