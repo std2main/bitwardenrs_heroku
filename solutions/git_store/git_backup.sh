@@ -45,7 +45,9 @@ clone_repo() {
 }
 
 restore_sqlite3() {
-  sqlite3 "${TARGET_DB}" < "${BACKUP_DB_REPO}/backup.sql"
+  if [ -f "${BACKUP_DB_REPO}/backup.sql" ]; then
+    sqlite3 "${TARGET_DB}" < "${BACKUP_DB_REPO}/backup.sql"
+  fi
 }
 
 init() {
