@@ -1,8 +1,10 @@
 ##################  RUNTIM IMAGE  ###################
 from bitwardenrs/server:alpine
 
-RUN apk add git
-RUN apk add openssh
+RUN apk add --no-cache git
+RUN apk add --no-cache openssh
+RUN apk add --no-cache inotify-tools
+RUN apk add --no-cache bash
 
 ENV BACKUP_DB_REPO="/backup_db"
 ENV BACKUP_FILE_REPO="/backup_file"
@@ -17,6 +19,8 @@ ENV LOG_LEVEL=error
 
 ADD git_backup.sh /git_backup.sh
 ADD heroku_start.sh /heroku_start.sh
+ADD inotify_backup_db.sh /inotify_backup_db.sh
+ADD inotify_backup_file.sh /inotify_backup_file.sh
 
 WORKDIR /
 ENTRYPOINT ["usr/bin/dumb-init", "--"]

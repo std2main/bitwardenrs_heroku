@@ -25,6 +25,10 @@
 			"description": "Base64 content for the ssh key to access git repos",
       "value": ""
 		},
+    "POLLING_BACKUP": {
+			"description": "Disable polling upload changes to repo when not equal true.",
+      "value": "true"
+    },
 		"ENABLE_ADMIN": {
 			"description": "Enable /admin access or not",
       "value": "false"

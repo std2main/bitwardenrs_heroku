@@ -10,22 +10,34 @@ else
   unset ADMIN_TOKEN
 fi
 
+warn () {
+    echo "$0:" "$@" >&2
+}
+die () {
+    rc=$1
+    shift
+    warn "$@"
+    exit $rc
+}
+
 # Below flags depends on Project enviroments, won't allow modify by client
-/git_backup.sh init || (echo "Failed to init git_backup"; exit 1)
+export BACKUP_SESSION="$(date +'%Y/%m/%d::%H:%M')"
+/git_backup.sh init || die 1 "Failed to init git_backup"
 
 # Restore things required when bitwarden_rs starting
 if [ "${DATABASE_URL}" == "/db.sqlite3" ]; then
   echo "Using sqlite3"
 else
-  echo "DATABASE_URL is modified to ${DATABASE_URL}"
-  exit 99
+  die 127 "DATABASE_URL is modified to ${DATABASE_URL}"
 fi
 
 export RSA_KEY_FILENAME="${BACKUP_DB_REPO}/rsa_key"
 # Default to store things in DB_REPO, admin modified config will be their.
 export DATA_FOLDER="${BACKUP_DB_REPO}/data"
-/git_backup.sh restore_db || (echo "Failed to restore database"; exit 2)
+/git_backup.sh restore_db || die 2 "Failed to restore database" 
 echo "Restore DB OK"
+# TODO: Watching DB is no working
+/inotify_backup_db.sh &
 mkdir -p "${DATA_FOLDER}"
 
 # Store files and icons in FILE_REPO
@@ -37,12 +49,16 @@ export ICON_CACHE_FOLDER="${BACKUP_FILE_REPO}/icons/"
 /bin/sh /start.sh &
 
 # Restore other things.
-/git_backup.sh restore_file || (echo "Failed to restore files" ; exit 3)
+/git_backup.sh restore_file || die 3 "Failed to restore files"
 echo "Restore Files OK"
+/inotify_backup_file.sh &
 
-sleep 60s
+# Periodically backup every minutes
 while true
 do
-  sleep 10s
-  /git_backup.sh backup
+  sleep 60
+  if [ "${POLLING_BACKUP}" == "true" ]; then
+    /git_backup.sh backup_db
+    /git_backup.sh backup_file
+  fi
 done

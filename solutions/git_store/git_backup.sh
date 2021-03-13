@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 # Reference: https://note.qidong.name/2017/12/use-git-to-backup-small-databases/
+
 
 readonly TARGET_DB="${DATABASE_URL}"
 readonly TMP_DB="/tmp/backup.db"
@@ -9,22 +10,38 @@ help(){
 }
 
 commit_repo() {
-  cd "$1"
+  local REPO="${1}"
+  cd "${REPO}"
   git add -A
-  if git commit -m 'Auto backup'
-  then
-        set -xe
-        git push
+  local CURRENT_TIME
+  CURRENT_TIME="$(date +"%Y/%m/%d::%H:%M")"
+  if [ -n "$(git status --porcelain)" ]; then
+    if git commit --amend -m "Auto backup: ${BACKUP_SESSION} - ${CURRENT_TIME}"
+    then
+      git push -f
+    fi
+  else
+    echo "no changes in ${REPO}";
   fi
 }
 
 backup_sqlite3() {
+  exec {sqlite_lock_fd}> "/SQLITE_BACKUP_LOCK" || exit 1
+  flock -n "${sqlite_lock_fd}" || { echo "ERROR: flock() failed." >&2; exit 1; }
   sqlite3 "${TARGET_DB}" ".backup ${TMP_DB}"
   sqlite3 "${TMP_DB}" .dump > ${BACKUP_DB_REPO}/backup.sql
+  flock -u "${sqlite_lock_fd}"
 }
 
 clone_repo() {
-  git clone "$1" "$2"
+  local URL="$1"
+  local REPO="$2"
+  git clone "${URL}" "${REPO}"
+  # Create first commit when session start
+  cd "${REPO}"
+  echo "${BACKUP_SESSION}: Start" >> log.txt
+  git add log.txt
+  git commit -m "Auto backup: ${BACKUP_SESSION}"
 }
 
 restore_sqlite3() {
@@ -52,9 +69,11 @@ case "${command}" in
     init)
       init
     ;;
-    backup)
+    backup_db)
       backup_sqlite3
       commit_repo "${BACKUP_DB_REPO}"
+    ;;
+    backup_file)
       commit_repo "${BACKUP_FILE_REPO}"
     ;;
     restore_db)
