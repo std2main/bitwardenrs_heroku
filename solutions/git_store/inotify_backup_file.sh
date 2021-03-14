@@ -1,9 +1,12 @@
 #!/bin/bash
 
-echo "Waiting to watch file change"
-echo "Start to monitoring changes of ${ATTACHMENTS_FOLDER}"
+readonly WATCH_DIR="/data/attachments"
+echo "watching file change in  ${WATCH_DIR}"
+#echo "Start to monitoring changes of ${ATTACHMENTS_FOLDER}"
 # TODO: Consider making file level backup.
-while inotifywait -rqq -e create,move,delete,modify "${ATTACHMENTS_FOLDER}"
+cd /data
+while inotifywait -rq -e create,move,delete,modify "${WATCH_DIR}"
 do
-  /git_backup.sh backup_file
+  echo "Attachment change monitored"
+  ./scripts/backup.sh file
 done

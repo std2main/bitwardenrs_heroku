@@ -1,9 +1,10 @@
 #!/bin/bash
 
-echo "Waiting to watch db change"
 echo "Start to monitoring changes of ${DATABASE_URL}"
+cd /data
 # TODO: watching is not working now.
 inotifywait -mrq --format '%w%f' -e modify "${DATABASE_URL}"  | while read line  
 do
-  /git_backup.sh backup_db
+  echo "DB change detected: ${line}"
+  ./scripts/backup.sh db
 done

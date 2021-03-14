@@ -21,7 +21,7 @@ die () {
 }
 
 # Below flags depends on Project enviroments, won't allow modify by client
-export BACKUP_SESSION="$(date +'%Y/%m/%d::%H:%M')"
+export BACKUP_SESSION="$(date +'%Y-%m-%d_%H-%M')"
 /git_backup.sh init || die 1 "Failed to init git_backup"
 
 # Restore things required when bitwarden_rs starting
@@ -33,16 +33,12 @@ fi
 
 export RSA_KEY_FILENAME="${BACKUP_DB_REPO}/rsa_key"
 # Default to store things in DB_REPO, admin modified config will be their.
-export DATA_FOLDER="${BACKUP_DB_REPO}/data"
+
 /git_backup.sh restore_db || die 2 "Failed to restore database" 
 echo "Restore DB OK"
-# TODO: Watching DB is no working
-/inotify_backup_db.sh &
-mkdir -p "${DATA_FOLDER}"
 
-# Store files and icons in FILE_REPO
-export ATTACHMENTS_FOLDER="${BACKUP_FILE_REPO}/attachments/"
-export ICON_CACHE_FOLDER="${BACKUP_FILE_REPO}/icons/"
+# TODO: Watching DB is not working yet
+/inotify_backup_db.sh &
 
 # Disable log to not spam heroku log.
 # May store to local and even in repo when needed.
@@ -50,6 +46,8 @@ export ICON_CACHE_FOLDER="${BACKUP_FILE_REPO}/icons/"
 
 # Restore other things.
 /git_backup.sh restore_file || die 3 "Failed to restore files"
+ln -sf "${BACKUP_FILE_REPO}/attachments" "/${DATA_FOLDER}/"
+rm -rf "/${DATA_FOLDER}/icon_cache" && ln -sf "/${BACKUP_FILE_REPO}/icon_cache" "/${DATA_FOLDER}/"
 echo "Restore Files OK"
 /inotify_backup_file.sh &
 
