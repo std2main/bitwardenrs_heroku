@@ -8,5 +8,5 @@ cd /data
 while inotifywait -rq -e create,move,delete,modify "${WATCH_DIR}"
 do
   echo "Attachment change monitored"
-  ./scripts/backup.sh file
+  /git_backup.sh backup_file
 done

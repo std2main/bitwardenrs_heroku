@@ -1,10 +1,9 @@
 #!/bin/bash
 
-echo "Start to monitoring changes of ${DATABASE_URL}"
 cd /data
 # TODO: watching is not working now.
-inotifywait -mrq --format '%w%f' -e modify "${DATABASE_URL}"  | while read line  
+inotifywait -mrq --format '%w%f' -e modify "/data/db.sqlite3"  | while read line  
 do
   echo "DB change detected: ${line}"
-  ./scripts/backup.sh db
+  /git_backup.sh backup_db
 done
