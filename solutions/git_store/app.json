@@ -5,24 +5,20 @@
   "website": "https://github.com/std2main/bitwardenrs_heroku/tree/git_store",
   "keywords": ["bitwarden", "git", "password", "otp"],
 	"env": {
-	  "DOMAIN": {
-			"description": "Domain of this site, like https://bw.example.com",
-			"value": "https://bw.example.com"
-		},
 		"ENABLE_ADMIN": {
 			"description": "Enable /admin access or not",
       "value": "false"
 		},
 		"BACKUP_DB_REPO_URL": {
-			"description": "git repo to store database",
-      "value": "git://"
+			"description": "git repo to store database, please fork https://github.com/std2main/example-bitwarden_rs-data.git",
+      "value": ""
 		},
 		"BACKUP_FILE_REPO_URL": {
-			"description": "git repo to store attachments",
-      "value": "git://"
+			"description": "git repo to store attachments, please fork https://github.com/std2main/example-bitwarden_rs-file.git",
+      "value": ""
 		},
 		"BACKUP_GIT_SSH_KEY_B64": {
-			"description": "Base64 content for the ssh key to access git repos",
+			"description": "Base64 content for the ssh key to access git repos, get it with 'cat ~/.ssh/id_rsa | base64'",
       "value": ""
 		},
     "POLLING_BACKUP": {
