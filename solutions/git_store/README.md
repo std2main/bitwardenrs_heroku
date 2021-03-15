@@ -2,6 +2,9 @@ Ideas to using git as backend to store local data that needed by bitwarden_rs.
 
 In this way, no third party database are needed. 
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+
 ## Deploy
 Switch to [git_store branch](https://github.com/std2main/bitwardenrs_heroku) and deploy with click.
 
