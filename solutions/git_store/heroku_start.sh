@@ -21,7 +21,7 @@ die () {
 }
 
 # Below flags depends on Project enviroments, won't allow modify by client
-export BAK_START_TIME="$(date +'%Y/%m/%d_%H-%M')"
+export BAK_START_TIME="$(date +'%Y-%m-%d_%H-%M')"
 /git_backup.sh init || die 1 "Failed to init git_backup"
 
 /git_backup.sh restore_db || die 2 "Failed to restore database" 

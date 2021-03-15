@@ -31,7 +31,7 @@ commit_repo() {
   pushd "${REPO}"
   git add -A
   local CURRENT_TIME
-  CURRENT_TIME="$(date +"%Y/%m/%d_%H-%M")"
+  CURRENT_TIME="$(date +"%Y-%m-%d_%H-%M")"
   if [ -n "$(git status --porcelain)" ]; then
     if git commit --amend -m "Auto: ${BAK_START_TIME} - ${CURRENT_TIME}"
     then

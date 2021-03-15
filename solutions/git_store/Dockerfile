@@ -14,6 +14,9 @@ ENV _BAK_FILE_REPO=/bak_file
 ENV ORG_ATTACHMENT_LIMIT=10240
 ENV USER_ATTACHMENT_LIMIT=10240
 ENV LOG_LEVEL=error
+# Disable WAL since we actively backup database. 
+# See more: https://github.com/dani-garcia/bitwarden_rs/wiki/Running-without-WAL-enabled
+ENV ENABLE_DB_WAL=false
 
 ADD git_backup.sh /git_backup.sh
 ADD heroku_start.sh /heroku_start.sh
