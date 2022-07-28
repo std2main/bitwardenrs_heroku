@@ -28,8 +28,7 @@
     }
 	},
   "addons": [
-     "heroku-postgresql:hobby-dev",
-     "autobus:trip"
+     "heroku-postgresql:hobby-dev"
    ],
   "stack": "container"
 }

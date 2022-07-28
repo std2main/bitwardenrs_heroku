@@ -1,4 +1,4 @@
-# [bitwardenrs_heroku](https://github.com/std2main/bitwardenrs_heroku)
+# [bitwardenrs_heroku](https://dashboard.heroku.com/new?template=https://github.com/OldTyT/bitwardenrs_heroku)
 Run [bitwarden_rs](https://github.com/dani-garcia/bitwarden_rs) on heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
