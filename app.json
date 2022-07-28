@@ -6,8 +6,8 @@
   "keywords": ["bitwarden", "postgresql", "password", "otp"],
 	"env": {
 	  "DOMAIN": {
-			"description": "Domain of this site, like https://bw.example.com",
-			"value": "https://bw.example.com"
+			"description": "Domain of this site, like https://APPNAME.herokuapp.com",
+			"value": "https://APPNAME.herokuapp.com"
 		},
 		"SINGUP_ALLOWED": {
 			"description": "Allow singup? true or false",
