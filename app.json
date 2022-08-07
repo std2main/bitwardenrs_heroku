@@ -62,6 +62,11 @@
       "value": "starttls",
       "required": false
     },
+    "DISABLE_2FA_REMEMBER": {
+      "description": "Enabling this would force the users to use a second factor to login every time. Note that the checkbox would still be present, but ignored.",
+      "value": "true",
+      "required": false
+    },
     "RSA_CONTENT": {
       "description": "Content of rsa keys, see more at https://github.com/std2main/bitwardenrs_heroku/blob/main/tools/set_heroku_rsa.sh",
       "value": "",
