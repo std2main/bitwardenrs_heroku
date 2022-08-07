@@ -1,12 +1,7 @@
 ##################  RUNTIM IMAGE  ###################
-from bitwardenrs/server:alpine
+from vaultwarden/server:alpine
 
-RUN apk add --no-cache git
-RUN apk add --no-cache openssh
-RUN apk add --no-cache inotify-tools
-RUN apk add --no-cache bash
-RUN apk add --no-cache unison
-RUN apk add --no-cache incron
+RUN apk add --no-cache git openssh inotify-tools bash unison incron
 
 ENV _BAK_FILE_REPO=/bak_file
 
